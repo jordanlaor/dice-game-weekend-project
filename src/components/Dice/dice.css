@@ -5,8 +5,29 @@
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 10px;
+  border: 1px #1b1b20 solid;
 }
 
 .dice-1 {
   background-image: url("./images/dice-1.png");
+}
+
+.dice-2 {
+  background-image: url("./images/dice-2.png");
+}
+
+.dice-3 {
+  background-image: url("./images/dice-3.png");
+}
+
+.dice-4 {
+  background-image: url("./images/dice-4.png");
+}
+
+.dice-5 {
+  background-image: url("./images/dice-5.png");
+}
+
+.dice-6 {
+  background-image: url("./images/dice-6.png");
 }

@@ -1,9 +1,8 @@
-import './App.css';
+import "./App.css";
+import Game from "./components/Game/Game.component";
 
 function App() {
-  return (
-    
-  );
+  return <Game />;
 }
 
 export default App;
