@@ -3,24 +3,70 @@ import Dice from "../Dice/Dice.component";
 import Button from "../Button/Button.component";
 
 class Game extends React.Component {
-  state = { currentPlayerIndex: 0, players: [], currentScores: [], dices: [0, 0], targetScore: 100 };
+  state = {
+    isWon: false,
+    currentPlayerIndex: 0,
+    players: ["Player 1", "Player 2"],
+    currentScore: [],
+    totalScores: [],
+    dices: [0, 0],
+    targetScore: 100,
+  };
 
   rollTheDice = () => {
-    this.setState({ dices: this.state.dices.map((dice) => Math.floor(Math.random() * 6) + 1) });
+    this.setState({ dices: this.state.dices.map((dice) => Math.floor(Math.random() * 6) + 1) }, this.checkDices);
   };
 
   drawTheDices = () => {
-    console.log(this.state.dices);
+    console.log(this.state.dices, this.state);
     return this.state.dices.map((dice) => <Dice diceValue={dice} />);
   };
 
-  // handleButtonRollDiceClick = () => {
-  //   this.rollTheDice();
-  // };
+  checkDices = () => {
+    if (this.state.dices.filter((dice) => dice === 6).length === this.state.dices.length) {
+      this.setState((prevState) => {
+        return prevState.currentPlayerIndex + 1 === prevState.players.length
+          ? { currentPlayerIndex: 0, currentScore: 0 }
+          : { currentPlayerIndex: prevState.currentPlayerIndex + 1, currentScore: 0 };
+      });
+    } else {
+      this.setState((prevState) => {
+        console.log(prevState.dices.reduce((acc, dice) => acc + dice));
+        return { currentScore: prevState.currentScore + prevState.dices.reduce((acc, dice) => acc + dice) };
+      });
+    }
+  };
+
+  hold = () => {
+    this.setState(
+      (prevState) => ({
+        totalScores: prevState.totalScores.map((totalScore, index) =>
+          index === prevState.currentPlayerIndex ? totalScore + prevState.currentScore : totalScore
+        ),
+      }),
+      () => {
+        const index = this.state.totalScores.findIndex((score) => score >= this.state.targetScore);
+        if (index > -1) {
+          this.setState({ isWon: true });
+          // TODO add winner handler
+        }
+      }
+    );
+    this.setState((prevState) => {
+      return prevState.currentPlayerIndex + 1 === prevState.players.length
+        ? {
+            currentPlayerIndex: 0,
+            currentScore: 0,
+          }
+        : {
+            currentPlayerIndex: prevState.currentPlayerIndex + 1,
+            currentScore: 0,
+          };
+    });
+  };
 
   componentDidMount() {
-    // TODO remove before submit
-    // this.rollTheDice();
+    this.setState((prevState) => ({ totalScores: prevState.players.map((player) => 0), currentScore: 0 }));
   }
 
   render() {
@@ -28,6 +74,7 @@ class Game extends React.Component {
       <div>
         {this.drawTheDices()}
         <Button handleButtonClick={this.rollTheDice} text="Roll the dice" />
+        <Button handleButtonClick={this.hold} text="Hold" />
       </div>
     );
   }
