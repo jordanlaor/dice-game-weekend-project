@@ -1,0 +1,33 @@
+.scoreboard {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.target-score {
+  text-align: center;
+}
+
+.players-score,
+.player-score {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.player-score {
+  background-color: #ffffff4d;
+  border: 2px dotted #003100;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.player-score div {
+  color: #ffffffbd;
+  font-size: 0.9em;
+}

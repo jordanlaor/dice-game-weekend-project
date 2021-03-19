@@ -1,17 +1,24 @@
 import "./scoreBoard.css";
-function scoreBoard({ currentPlayerIndex, players }) {
+function scoreBoard({ currentPlayerIndex, players, targetScore }) {
   console.log("scoreBoard" + players.filter((player, index) => index !== currentPlayerIndex));
   return (
-    <ul>
-      {players
-        .filter((player, index) => index !== currentPlayerIndex)
-        .map((player) => {
-          return (
-            <li>
-              {player.name}: {player.totalScore}
-            </li>
-          );
-        })}
+    <ul className="scoreboard">
+      <li className="target-score">
+        <h3>Target Score: {targetScore}</h3>
+      </li>
+      <li className="players-score">
+        {players
+          .filter((player, index) => index !== currentPlayerIndex)
+          .map((player) => {
+            return (
+              <li className="player-score">
+                <h4>{player.name}</h4>
+                <div>Total Score: {player.totalScore}</div>
+                <div>Won rounds: {player.wins}</div>
+              </li>
+            );
+          })}
+      </li>
     </ul>
   );
 }
