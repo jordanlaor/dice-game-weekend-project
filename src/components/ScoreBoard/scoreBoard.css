@@ -31,3 +31,9 @@
   color: #ffffffbd;
   font-size: 0.9em;
 }
+
+@media (max-height: 350px) {
+  .scoreboard {
+    gap: 15px;
+  }
+}

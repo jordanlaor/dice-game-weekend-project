@@ -16,3 +16,9 @@ button:hover {
   cursor: pointer;
   color: #003100;
 }
+
+@media (max-height: 350px) {
+  button {
+    padding: 6px;
+  }
+}

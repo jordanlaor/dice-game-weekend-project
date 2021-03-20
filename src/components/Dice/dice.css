@@ -31,3 +31,18 @@
 .dice-6 {
   background-image: url("./images/dice-6.png");
 }
+
+@media (max-height: 400px) {
+  .dice {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (max-height: 350px) {
+  .dice {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+  }
+}

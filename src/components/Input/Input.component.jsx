@@ -6,7 +6,7 @@ function Input({ name, id, input, handleInputChange, type, defaultValue, label }
       <input
         type={type}
         id={id}
-        min={type === "number" ? "1" : undefined}
+        min={type === "number" ? "10" : undefined}
         minLength="1"
         defaultValue={defaultValue}
         name={name}

@@ -118,8 +118,10 @@ class Game extends React.Component {
       while (playersNames.length < 2) {
         playersNames.push(`Player ${playersNames.length + 1}`);
       }
+      let targetScore = parseInt(prevState.input.targetScore);
+      if (targetScore < 10 || !targetScore) targetScore = 10;
       const players = playersNames.map((player) => ({ name: player, totalScore: 0, wins: 0 }));
-      return { players, targetScore: parseInt(prevState.input.targetScore), gameState: 0 };
+      return { players, targetScore, gameState: 0 };
     });
   };
 

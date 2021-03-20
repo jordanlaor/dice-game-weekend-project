@@ -6,3 +6,10 @@
 .current-player div {
   color: #ffffffd0;
 }
+
+@media (max-height: 500px) {
+  .current-player-stats {
+    display: flex;
+    gap: 20px;
+  }
+}
