@@ -7,17 +7,19 @@ function scoreBoard({ currentPlayerIndex, players, targetScore }) {
         <h3>Target Score: {targetScore}</h3>
       </li>
       <li className="players-score">
-        {players
-          .filter((player, index) => index !== currentPlayerIndex)
-          .map((player) => {
-            return (
-              <li className="player-score">
-                <h4>{player.name}</h4>
-                <div>Total Score: {player.totalScore}</div>
-                <div>Won rounds: {player.wins}</div>
-              </li>
-            );
-          })}
+        <ul>
+          {players
+            .filter((player, index) => index !== currentPlayerIndex)
+            .map((player) => {
+              return (
+                <li className="player-score">
+                  <h4>{player.name}</h4>
+                  <div>Total Score: {player.totalScore}</div>
+                  <div>Won rounds: {player.wins}</div>
+                </li>
+              );
+            })}
+        </ul>
       </li>
     </ul>
   );

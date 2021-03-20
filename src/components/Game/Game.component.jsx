@@ -17,6 +17,7 @@ class Game extends React.Component {
     input: { players: "Player 1,Player 2", targetScore: "100" },
     winner: "",
   };
+  rollSound = React.createRef();
 
   setLocalStorage = () => {
     localStorage.setItem("game", JSON.stringify(this.state));
@@ -27,6 +28,7 @@ class Game extends React.Component {
   };
 
   rollTheDice = () => {
+    this.rollSound.current.play();
     this.setState({ dices: this.state.dices.map((dice) => Math.floor(Math.random() * 6) + 1) }, this.checkDices);
   };
 
@@ -139,7 +141,7 @@ class Game extends React.Component {
         return (
           <div className="game game-welcome">
             <h1>
-              Welcome to the Dice Game! <i class="fas fa-dice"></i>
+              Welcome to the Dice Game! <i className="fas fa-dice"></i>
             </h1>
             <div className="intro">
               <div>
@@ -196,7 +198,7 @@ class Game extends React.Component {
         return (
           <div className="game game-main">
             <h1>
-              The Dice Game! <i class="fas fa-dice"></i>
+              The Dice Game! <i className="fas fa-dice"></i>
             </h1>
             <ScoreBoard
               currentPlayerIndex={this.state.currentPlayerIndex}
@@ -217,7 +219,7 @@ class Game extends React.Component {
         return (
           <div className="game game-win">
             <h1>
-              The winner is {this.state.winner.name} <i class="fas fa-dice"></i>
+              The winner is {this.state.winner.name} <i className="fas fa-dice"></i>
             </h1>
             <div className="intro">
               <div>Click New round to keep playing together.</div>
@@ -256,7 +258,12 @@ class Game extends React.Component {
 
   render() {
     console.log(this.state);
-    return <div className="game-wrapper">{this.drawGame()}</div>;
+    return (
+      <div>
+        <div className="game-wrapper">{this.drawGame()}</div>
+        <audio ref={this.rollSound} preload="auto" src="../Dice/roll.mp3"></audio>
+      </div>
+    );
   }
 }
 
