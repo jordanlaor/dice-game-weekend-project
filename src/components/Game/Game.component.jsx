@@ -261,7 +261,7 @@ class Game extends React.Component {
     return (
       <div>
         <div className="game-wrapper">{this.drawGame()}</div>
-        <audio ref={this.rollSound} preload="auto" src="../Dice/roll.mp3"></audio>
+        <audio ref={this.rollSound} preload="auto" src={require("../Dice/roll.mp3").default}></audio>
       </div>
     );
   }
